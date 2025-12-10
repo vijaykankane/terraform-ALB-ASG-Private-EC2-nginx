@@ -16,7 +16,7 @@ resource "aws_security_group" "app_sg" {
     from_port   = 80
     to_port = 80
     protocol = "tcp"
-    cidr_blocks = ["10.47.0.0/16"] # allow from VPC or ALB SG
+    cidr_blocks = ["10.50.0.0/16"] # allow from VPC or ALB SG
   }
   egress { 
     from_port=0
