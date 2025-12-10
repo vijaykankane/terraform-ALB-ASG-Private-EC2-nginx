@@ -1,10 +1,10 @@
 README — Private ALB + ASG + S3 Endpoint Setup
 
-Create VPC — 10.48.0.0/16 VPC with DNS hostnames and DNS resolution enabled.
+Create VPC — 10.50.0.0/16 VPC with DNS hostnames and DNS resolution enabled.
 
-Create Public Subnets — Two public subnets for ALB and NAT gateway placement.
+Create Public Subnets — Three public subnets for ALB and NAT gateway placement.
 
-Create Private Subnets — Two private subnets for ASG instances, no public IPs.
+Create Private Subnets — Three private subnets for ASG instances, no public IPs.
 
 Create Internet Gateway — Attach IGW and route public subnets to internet.
 
@@ -14,7 +14,7 @@ Create NAT Gateways — One per public subnet to allow outbound internet from pr
 
 Create S3 Gateway Endpoint — Configure S3 endpoint and associate with private route tables.
 
-Create Security Group (ALB) — Allow inbound 80/443 from internet, outbound all.
+Create Security Group (ALB) — Allow inbound 80 from internet, outbound all.
 
 Create Security Group (EC2) — Allow inbound 80 from ALB SG, SSH only from bastion SG.
 
@@ -26,7 +26,7 @@ Create Launch Template (v1) — AMI, instance type, SG-EC2, no public IP, user-d
 
 Create Auto Scaling Group — Use LT, private subnets, attach to Target Group, desired capacity set.
 
-Verify ALB DNS — Open ALB DNS; confirm “Hello from Private EC2” served by nginx.
+Verify ALB DNS — Open ALB DNS; confirm “staging - nginx instanceID” served by nginx.
 
 Create IAM Role (EC2-S3-Role) — EC2 trusted role with AmazonS3ReadOnlyAccess or custom policy.
 
