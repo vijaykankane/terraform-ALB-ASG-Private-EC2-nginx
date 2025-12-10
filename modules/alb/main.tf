@@ -36,6 +36,7 @@ resource "aws_lb_target_group" "tg" {
     unhealthy_threshold = 2
     interval = 15 
  }
+  
 }
 
 resource "aws_lb_listener" "http" {

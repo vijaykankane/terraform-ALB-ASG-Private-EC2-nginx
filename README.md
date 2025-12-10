@@ -1,5 +1,9 @@
 README — Private ALB + ASG + S3 Endpoint Setup
 
+please go under dev folder and configure your bucket/key/dynamo db table and in dev.tfvars your enviornmetn and region in variables then use init / apply with tfvar file and destroy once tested. its end to end working code for the nginx.
+
+Activities achieved by the terraform code with modular approch
+
 Create VPC — 10.50.0.0/16 VPC with DNS hostnames and DNS resolution enabled.
 
 Create Public Subnets — Three public subnets for ALB and NAT gateway placement.
@@ -27,16 +31,6 @@ Create Launch Template (v1) — AMI, instance type, SG-EC2, no public IP, user-d
 Create Auto Scaling Group — Use LT, private subnets, attach to Target Group, desired capacity set.
 
 Verify ALB DNS — Open ALB DNS; confirm “staging - nginx instanceID” served by nginx.
-
-Create IAM Role (EC2-S3-Role) — EC2 trusted role with AmazonS3ReadOnlyAccess or custom policy.
-
-Create LT New Version — Modify Launch Template, attach IAM instance profile (new version).
-
-Set ASG to New LT Version — Update ASG launch template version to use IAM role.
-
-Terminate Old Instances — Terminate ASG instances; ASG recreates with new IAM role automatically.
-
-Verify S3 from Private EC2 — Connect via bastion/EC2-ICE and run aws s3 ls successfully.
 
 Optional Bastion — Public bastion SG: SSH from my IP. Private SG: SSH from bastion only.
 
@@ -73,3 +67,4 @@ For access: prefer EC2 Instance Connect Endpoint or bastion; avoid attaching pub
 Final Note
 
 Keep this README with Terraform modules and exact resource names for reproducible automation later.
+
